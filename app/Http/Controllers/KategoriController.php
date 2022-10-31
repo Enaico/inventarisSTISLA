@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tempat;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Validator;
 
-class TempatController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,23 +15,23 @@ class TempatController extends Controller
      */
     public function index()
     {
-        $tempat = Tempat::all();
-        return view('tempat.index', compact('tempat'));
+        $kategori = Kategori::all();
+        return view('kategori.index', compact('kategori'));
     }
 
     public function data()
     {
-        $tempat = Tempat::orderBy('id','desc')->get();
+        $kategori = Kategori::orderBy('id','desc')->get();
 
         return datatables()
-            ->of($tempat)
+            ->of($kategori)
             ->addIndexColumn()
-            ->addColumn('aksi', function($tempat){
+            ->addColumn('aksi', function($kategori){
                 return '
                 
                 <div class="btn-group">
-                    <button onClick="editData(`' .route('tempat.update', $tempat->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
-                    <button onClick="deleteData(`' .route('tempat.destroy', $tempat->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    <button onClick="editData(`' .route('kategori.update', $kategori->id). '`)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
+                    <button onClick="deleteData(`' .route('kategori.destroy', $kategori->id). '`)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </div>
                 ';
             })
@@ -65,24 +65,24 @@ class TempatController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $tempat = Tempat::create([
+        $kategori = Kategori::create([
             'nama' => $request->nama,
         ]);
 
         return response()->json([
             'success' => true,
             'message' => 'Data berhasil disimpan',
-            'data' => $tempat
+            'data' => $kategori
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tempat  $tempat
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function show(Tempat $tempat)
+    public function show(Kategori $kategori)
     {
         //
     }
@@ -90,10 +90,10 @@ class TempatController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tempat  $tempat
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tempat $tempat)
+    public function edit(Kategori $kategori)
     {
         //
     }
@@ -102,10 +102,10 @@ class TempatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tempat  $tempat
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tempat $tempat)
+    public function update(Request $request, Kategori $kategori)
     {
         //
     }
@@ -113,10 +113,10 @@ class TempatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tempat  $tempat
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tempat $tempat)
+    public function destroy(Kategori $kategori)
     {
         //
     }

@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Barang;
 
-class Tempat extends Model
+class Kategori extends Model
 {
     use HasFactory;
 
-    protected $table = 'tempat';
+    protected $table = 'kategori';
 
     protected $guarded = [];
 
-    public function Tempat(){
-        return $this->belongsTo(Tempat::class);
+    public function Barang(){
+        return $this->belongsTo(Barang::class);
     }
+
 }
