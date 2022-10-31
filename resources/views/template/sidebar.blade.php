@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="{{ request()->is('tempat*') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('tempat.index') }}">
                     <i class="fas fa-fire"></i>
                     <span>Tempat</span>
                 </a>

@@ -29,11 +29,11 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-danger">
-                    <i class="far fa-newspaper"></i>
+                    <i class="far fa-map-marker"></i>
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>News</h4>
+                        <h4>Tempat</h4>
                     </div>
                     <div class="card-body">
                         42
@@ -44,11 +44,11 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-warning">
-                    <i class="far fa-file"></i>
+                    <i class="far fa-boxes"></i>
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>Reports</h4>
+                        <h4>Barang</h4>
                     </div>
                     <div class="card-body">
                         1,201
@@ -59,11 +59,11 @@
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-success">
-                    <i class="fas fa-circle"></i>
+                    <i class="fas fa-cog"></i>
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>Online Users</h4>
+                        <h4>Setting Users</h4>
                     </div>
                     <div class="card-body">
                         47
