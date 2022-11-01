@@ -82,9 +82,10 @@ class TempatController extends Controller
      * @param  \App\Models\Tempat  $tempat
      * @return \Illuminate\Http\Response
      */
-    public function show(Tempat $tempat)
+    public function show($id)
     {
-        //
+        $tempat = Tempat::find($id);
+        return response()->json($tempat);
     }
 
     /**
@@ -93,9 +94,10 @@ class TempatController extends Controller
      * @param  \App\Models\Tempat  $tempat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tempat $tempat)
+    public function edit($id)
     {
-        //
+        $tempat = Tempat::find($id);
+        return view('tempat.form', compact('tempat'));
     }
 
     /**
@@ -105,19 +107,25 @@ class TempatController extends Controller
      * @param  \App\Models\Tempat  $tempat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tempat $tempat)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $tempat = Tempat::find($id);
+        $tempat->nama = $request->nama;
+        $tempat->update();
 
+        return response()->json('Data Berhasil Disimpan');
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Tempat  $tempat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tempat $tempat)
+    public function destroy($id)
     {
-        //
+        $tempat = Tempat::find($id);
+        $tempat->delete();
+
+        return redirect('tempat');
     }
 }

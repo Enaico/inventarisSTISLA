@@ -23,12 +23,12 @@ Tempat
 
                     <!-- Tabel -->
                     <div class="card-body">
-                        <table class="table table-striped">
+                        <table class="table table-striped text-nowrap" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <td style="width: 5%">No</td>
-                                    <td>Nama</td>
-                                    <td style="width: 15%">Aksi</td>
+                                    <td scope="col" width="50px">No</td>
+                                    <td scope="col">Nama</td>
+                                    <td scope="col" width="84px">Aksi</td>
                                 </tr>
                             </thead>
                         </table>
@@ -75,6 +75,8 @@ Tempat
 </section>
 @endsection
 
+@include('tempat.form')
+
 @push('script')
     <script>
     // Data Tables
@@ -115,5 +117,77 @@ Tempat
                 })
             }
         })
+        // Fungsi Edit Data
+        $('#modalForm').on('submit', function(e){
+            if(! e.preventDefault()){
+                $.post($('#modalForm form').attr('action'), $('#modalForm form').serialize())
+                .done((response) => {
+                    $('#modalForm').modal('hide');
+                    table.ajax.reload();
+                    iziToast.success({
+                        title: 'Sukses',
+                        message: 'Data berhasil di ubah',
+                        position: 'topRight'
+                    })
+                })
+                .fail((errors) => {
+                    iziToast.error({
+                        title: 'Gagal',
+                        message: 'Data gagal di ubah',
+                        position: 'topRight'
+                    })
+                    return;
+                })
+            }
+        })
+    function editData(url){
+        $('#modalForm').modal('show');
+        $('#modalForm .modal-title').text('Edit Data Tempat');
+        $('#modalForm form')[0].reset();
+        $('#modalForm form').attr('action', url);
+        $('#modalForm [name=_method]').val('put');
+        $.get (url)
+            .done((response) => {
+                $('#modalForm [name=nama]').val(response.nama);
+                // console.log(response.nama);
+            })
+            .fail((errors) => {
+                alert('Tidak Dapat Menampilkan Data');
+                return;
+            })
+    }
+    // Fungsi Delete Data
+    function deleteData(url){
+            swal({
+                title: "Apa anda yakin menghapus data ini?",
+                text: "Jika anda klik OK, maka data akan terhapus",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.post(url, {
+                    '_token' : $('[name=csrf-token]').attr('content'),
+                    '_method' : 'delete'
+                })
+                .done((response) => {
+                    swal({
+                    title: "Sukses",
+                    text: "Data berhasil dihapus!",
+                    icon: "success",
+                    });
+                })
+                .fail((errors) => {
+                    swal({
+                    title: "Gagal",
+                    text: "Data gagal dihapus!",
+                    icon: "error",
+                    });
+                })
+                table.ajax.reload();
+                }
+            });
+        }
     </script>
 @endpush

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- General CSS Files -->
@@ -37,15 +38,14 @@
 
             <!-- Main Content -->
             <div class="main-content">
-                <section class="section">
-                    @yield('content')
+                @yield('content')
                     <!-- <div class="section-header">
                         <h1>Blank Page</h1>
                     </div>
 
                     <div class="section-body">
                     </div> -->
-                </section>
+              
             </div>
             @include('template.footer')
         </div>
@@ -68,6 +68,9 @@
 
     {{-- Izitoast --}}
     <script src="{{ asset('/izitoast/iziToast.min.js') }}"></script>
+
+    {{-- SweetAlert --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Page Specific JS File -->
 
